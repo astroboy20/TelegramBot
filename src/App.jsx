@@ -16,7 +16,7 @@ function App() {
         )
       );
     } else {
-      cartItems([...cartItems, { ...food, quantity: 1 }]);
+      setCartItems([...cartItems, { ...food, quantity: 1 }]);
     }
   };
 
@@ -25,9 +25,9 @@ function App() {
     if (exist.quantity === 1) {
       setCartItems(cartItems.filter((item) => item.id !== food.id));
     } else {
-      cartItems(
+      setCartItems(
         cartItems.map((item) =>
-          item.id === food.id ? { exist, quantity: exist.quantity - 1 } : item
+          item.id === food.id ? { ...item, quantity: exist.quantity - 1 } : item
         )
       );
     }

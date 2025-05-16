@@ -4,7 +4,7 @@ import "./Cart.css";
 
 const Cart = ({ cartItems }) => {
   const totalPrice = cartItems.reduce(
-    (item, total) => total + item.price * item.quantity,
+    (total, item) => total + item.price * item.quantity,
     0
   );
   return (
@@ -12,9 +12,9 @@ const Cart = ({ cartItems }) => {
       {cartItems.length === 0 ? "No items in cart" : ""}
       <br /> <span className="">Total Price: ${totalPrice.toFixed(2)}</span>
       <Button
-        title={`${cartItems.length === 0 ? "Order Item" : "Checkout"} `}
-        type={"checout"}
-        disable={cartItems.length === 0 ? true : false}
+        title={`${cartItems.length === 0 ? "Order Item" : "Checkout"}`}
+        type={"checkout"}
+        disabled={cartItems.length === 0}
       />
     </div>
   );
