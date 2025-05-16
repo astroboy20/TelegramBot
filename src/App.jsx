@@ -4,8 +4,9 @@ import Card from "./components/Card/Card";
 import Cart from "./components/Cart/Cart";
 import { getData } from "./db/db";
 
-const telegram = window.telegram.webApp;
+const telegram = window.Telegram.WebApp;
 function App() {
+
   const foods = getData();
   const [cartItems, setCartItems] = useState([]);
   const onAdd = (food) => {
