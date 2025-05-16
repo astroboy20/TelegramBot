@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../Button/Button";
 import "./Cart.css";
 
-const Cart = ({ cartItems }) => {
+const Cart = ({ cartItems, onCheckout }) => {
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -15,6 +15,7 @@ const Cart = ({ cartItems }) => {
         title={`${cartItems.length === 0 ? "Order Item" : "Checkout"}`}
         type={"checkout"}
         disabled={cartItems.length === 0}
+        onClick={onCheckout}
       />
     </div>
   );

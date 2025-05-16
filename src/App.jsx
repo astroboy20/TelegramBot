@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Card from "./components/Card/Card";
 import Cart from "./components/Cart/Cart";
 import { getData } from "./db/db";
 
+const telegram = window.telegram.webApp;
 function App() {
   const foods = getData();
   const [cartItems, setCartItems] = useState([]);
@@ -32,13 +33,22 @@ function App() {
       );
     }
   };
+
+  useEffect(() => {
+    telegram.ready();
+  }, []);
+
+  const onCheckout = ()=>{
+    telegram.MainButton.text = "Pay :)"
+    telegram.MainButton.show()
+  }
   return (
     <>
       <h1 className="heading">Order Food</h1>
-      <Cart cartItems={cartItems} />
+      <Cart cartItems={cartItems} onCheckout={onCheckout}/>
       <div className="cards__container">
         {foods.map((food) => (
-          <Card food={food} key={food.id}  onAdd={onAdd} onRemove={onRemove}/>
+          <Card food={food} key={food.id} onAdd={onAdd} onRemove={onRemove} />
         ))}
       </div>
     </>
